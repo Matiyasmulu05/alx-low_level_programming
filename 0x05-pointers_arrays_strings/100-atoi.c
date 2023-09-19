@@ -1,45 +1,45 @@
 #include "main.h"
 
 /**
- * atoi - convert
- * @s: converted
+ * _atoi - converts a string to an integer
+ * @s: string to be converted
  *
- * Return: the int
+ * Return: the int converted from the string
  */
 int _atoi(char *s)
 {
-	int m, d, n, len, l, digit;
+	int z, d, n, len, f, digit;
 
-	m = 0;
+	z = 0;
 	d = 0;
 	n = 0;
 	len = 0;
-	l = 0;
+	f = 0;
 	digit = 0;
 
 	while (s[len] != '\0')
 		len++;
 
-	while (m < len && l == 0)
+	while (z < len && f == 0)
 	{
-		if (s[m] == '-')
+		if (s[z] == '-')
 			++d;
 
-		if (s[m] >= '0' && s[m] <= '9')
+		if (s[z] >= '0' && s[z] <= '9')
 		{
-			digit = s[m] - '0';
+			digit = s[z] - '0';
 			if (d % 2)
 				digit = -digit;
 			n = n * 10 + digit;
-			l = 1;
-			if (s[m + 1] < '0' || s[m + 1] > '9')
+			f = 1;
+			if (s[z + 1] < '0' || s[z + 1] > '9')
 				break;
-			l = 0;
+			f = 0;
 		}
-		m++;
+		z++;
 	}
 
-	if (l == 0)
+	if (f == 0)
 		return (0);
 
 	return (n);
