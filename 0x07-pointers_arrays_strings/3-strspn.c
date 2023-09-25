@@ -1,21 +1,20 @@
 #include "main.h"
-
 /**
  * _strspn - strspn
- * @accept: input
  * @s: input
+ * @accept: input
  * Return: Always 0
  */
-unsigned int _strspn(char *m, char *accept)
+unsigned int _strspn(char *s, char *accept)
 {
 	unsigned int n = 0;
 	int r;
 
-	while (*m)
+	while (*s)
 	{
 		for (r = 0; accept[r]; r++)
 		{
-			if (*m == accept[r])
+			if (*s == accept[r])
 			{
 				n++;
 				break;
@@ -23,7 +22,7 @@ unsigned int _strspn(char *m, char *accept)
 			else if (accept[r + 1] == '\0')
 				return (n);
 		}
-		m++;
+		s++;
 	}
 	return (n);
 }
