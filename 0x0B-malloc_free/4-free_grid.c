@@ -11,11 +11,11 @@
  */
 void free_grid(int **grid, int height)
 {
-	int M;
+	int m;
 
-	for (M = 0; M < height; M++)
+	for (m = 0; m < height; m++)
 	{
-		free(grid[M]);
+		free(grid[m]);
 	}
 	free(grid);
 }
