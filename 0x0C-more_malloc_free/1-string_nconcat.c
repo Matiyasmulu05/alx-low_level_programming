@@ -1,49 +1,45 @@
-#include <stdio.h>
 #include <stdlib.h>
 #include "main.h"
 
 /**
- * string_noncat - concatenates string
- * @s1: string 1 m
- * @s2: string 2 m
- * @m: no of bytes to concatenates from s2
- * Return: concatenated string
+ * *string_nconcat - concatenates n bytes of a string to another string
+ * @s1: string to append to
+ * @s2: string to concatenate from
+ * @n: number of bytes from s2 to concatenate to s1
+ *
+ * Return: pointer to the resulting string
  */
-
-char *string_noncat(char *s1, char *s2, unsigned int m)
+char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
-	unsigned int k;
-	unsigned int s1len = 0;
-	unsigned int s2len = 0;
-	char *output;
+	char *s;
+	unsigned int m = 0, k = 0, len1 = 0, len2 = 0;
 
-	if (s1 == NULL)
-		s1 = "";
-	if (s2 == NULL)
-		s2 = "";
-	for (k = 0; s1[k] != '\0'; k++)
-		s1len++;
-	for (k = 0; s2[k] != '\0'; k++)
-		s2len++;
+	while (s1 && s1[len1])
+		len1++;
+	while (s2 && s2[len2])
+		len2++;
 
-	output = malloc(sizeof(char) * (s1len + m) + 1);
-	if (output == NULL)
-		return (NULL);
-	if (m >= s2len)
-	{
-		for (k = 0; s1[k] != '\0'; k++)
-			output[k] = s1[k];
-		for (k = 0; s2[k] != '\0'; k++)
-			output[s1len + k] = s2[k];
-		output[s1len + k] = '\0';
-	}
+	if (n < len2)
+		s = malloc(sizeof(char) * (len1 + n + 1));
 	else
+		s = malloc(sizeof(char) * (len1 + len2 + 1));
+
+	if (!s)
+		return (NULL);
+
+	while (m < len1)
 	{
-		for (k = 0; s1[k] != '\0'; k++)
-			output[k] = s1[k];
-		for (k = 0; k < m; k++)
-			output[s1len + k] = s2[k];
-		output[s1len + k] = '\0';
+		s[m] = s1[m];
+		m++;
 	}
-	return (output);
+
+	while (n < len2 && m < (len1 + n))
+		s[m++] = s2[k++];
+
+	while (n >= len2 && m < (len1 + len2))
+		s[m++] = s2[k++];
+
+	s[m] = '\0';
+
+	return (s);
 }
