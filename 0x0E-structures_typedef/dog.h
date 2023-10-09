@@ -3,15 +3,15 @@
 
 /**
  * struct dog - a dog's basic info
- * @name: 1st member
- * @age: 2nd member
- * @owner: 3rd member
+ * @name: First member
+ * @age: Second member
+ * @owner: Third member
  *
  * Description: Longer description
  */
 struct dog
 {
-gchar *name;
+	char *name;
 	float age;
 	char *owner;
 };
