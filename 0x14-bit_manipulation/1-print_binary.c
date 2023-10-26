@@ -1,20 +1,19 @@
 #include "main.h"
 
 /**
- * _pow - func calculates (base power)
- * @base: base
- * @power: power
+ * _pow - func calculates (base and power)
+ * @base: base of the exponent
+ * @power: power of the exponent
  *
- * Return: value of base and power
+ * Return: value of (base and power)
  */
-
 unsigned long int _pow(unsigned int base, unsigned int power)
 {
 	unsigned long int num;
 	unsigned int M;
 
 	num = 1;
-	for (M = 1; M <= power; M++)
+	for (M = 1; power >= M; M++)
 		num *= base;
 	return (num);
 }
@@ -25,7 +24,6 @@ unsigned long int _pow(unsigned int base, unsigned int power)
  *
  * Return: void
  */
-
 void print_binary(unsigned long int n)
 {
 	unsigned long int divisor, check;
