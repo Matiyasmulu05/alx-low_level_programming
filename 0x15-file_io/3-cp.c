@@ -2,30 +2,31 @@
 #include <stdio.h>
 
 /**
- * error_file - check if
+ * error_file - check
  * @file_from: file
  * @file_to: file
- * @argv: argument
- * Return: there is no return
+ * @argv: vector.
+ * Return: no return.
  */
 void error_file(int file_from, int file_to, char *argv[])
 {
 	if (file_from == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: can't read from file %s\n", argv[1]);
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
 		exit(98);
 	}
 	if (file_to == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: can't write to %s\n", argv[2]);
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
 		exit(99);
 	}
 }
+
 /**
- * main - content of file
- * @argc: argu count
- * @argv: argu vector
- * Return: 0 on success
+ * main - check
+ * @argc: arguments
+ * @argv: argument
+ * Return: always 0.
  */
 int main(int argc, char *argv[])
 {
@@ -49,22 +50,23 @@ int main(int argc, char *argv[])
 		nchars = read(file_from, buf, 1024);
 		if (nchars == -1)
 			error_file(-1, 0, argv);
-		nwr = write(file_to, buf, 1024);
-			if (nwr == -1)
+		nwr = write(file_to, buf, nchars);
+		if (nwr == -1)
 			error_file(0, -1, argv);
 	}
 
 	err_close = close(file_from);
 	if (err_close == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: can't close fd %d\n", file_from);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_from);
 		exit(100);
 	}
+
 	err_close = close(file_to);
+	if (err_close == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: can't close fd %d\n", file_to);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_from);
 		exit(100);
 	}
 	return (0);
 }
-
